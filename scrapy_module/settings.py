@@ -7,6 +7,11 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+
+import os
+
+
+
 BOT_NAME = "scrapy_module"
 
 SPIDER_MODULES = ["scrapy_module.spiders"]
@@ -17,7 +22,7 @@ NEWSPIDER_MODULE = "scrapy_module.spiders"
 #USER_AGENT = "scrapy_module (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False #! Para así poder tener más libertad para hacer scraping
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -91,3 +96,9 @@ DOWNLOAD_DELAY = 1
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_scrapy')
+
+import django
+django.setup()
+
