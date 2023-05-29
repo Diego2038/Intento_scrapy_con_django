@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_scrapy',
+    # 'app_scrapy', # En teoría es igual
+    'app_scrapy.apps.AppScrapyConfig',
     'rest_framework',
 ]
 

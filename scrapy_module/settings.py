@@ -1,4 +1,4 @@
-# Scrapy settings for other_project project
+# Scrapy settings for scrapy_module project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "other_project"
+BOT_NAME = "scrapy_module"
 
-SPIDER_MODULES = ["other_project.spiders"]
-NEWSPIDER_MODULE = "other_project.spiders"
+SPIDER_MODULES = ["scrapy_module.spiders"]
+NEWSPIDER_MODULE = "scrapy_module.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "other_project (+http://www.yourdomain.com)"
+#USER_AGENT = "scrapy_module (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "other_project.middlewares.OtherProjectSpiderMiddleware": 543,
+#    "scrapy_module.middlewares.ScrapyModuleSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "other_project.middlewares.OtherProjectDownloaderMiddleware": 543,
+#    "scrapy_module.middlewares.ScrapyModuleDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "other_project.pipelines.OtherProjectPipeline": 300,
+#    "scrapy_module.pipelines.ScrapyModulePipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
