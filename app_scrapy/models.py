@@ -7,3 +7,10 @@ class Articulo( models.Model ):
     titulo = models.CharField(1000)
     precio = models.CharField(1000)
     descripcion = models.CharField(1000)
+    
+    class Meta:
+        app_label = 'app_scrapy'
+        
+
+    def __str__(self) -> str:
+        return str(self.titulo)

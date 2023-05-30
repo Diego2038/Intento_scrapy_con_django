@@ -6,5 +6,5 @@ class ArticuloSerializer(serializers.ModelSerializer):
         model = Articulo
         fields = ['articulo_id','titulo','precio','descripcion']
         
-    # def create(self, validated_data):
-    #     return Articulo.objects.create(**validated_data)
+    def create(self, validated_data):
+        return Articulo.objects.create(**validated_data)
