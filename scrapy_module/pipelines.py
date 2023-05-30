@@ -11,6 +11,9 @@ from app_scrapy.serializers import ArticuloSerializer
 from asgiref.sync import sync_to_async
 from scrapy.exceptions import DropItem
 
+import os
+os.environ['DJANGO_SETTINGS_MODULE']='project_scrapy.settings'
+
 class ScrapyModulePipeline:
     
     @sync_to_async
@@ -19,10 +22,10 @@ class ScrapyModulePipeline:
         articulo_data = {}
         
         articulo_data['titulo'] = item['title'][0]
-        articulo_data['precio'] = item['price'][0]
+        articulo_data['precio'] = str(item['price'][0])
         articulo_data['descripcion'] = item['description'][0]
         # articulo_data['titulo'] = 'titulo'
-        # articulo_data['precio'] = 1341
+        # articulo_data['precio'] = str(1341)
         # articulo_data['descripcion'] = 'Descripción genérica'
         
         print("MIRAAAAAAAAAA!!!!!!", articulo_data)
@@ -37,12 +40,12 @@ class ScrapyModulePipeline:
             else:
                 raise DropItem(f"Item inválido: {serializer.errors}") 
         
-        except Exception as e:
+        except Exception as e: 
             print('Error pendejo:', e, '\n\n\n\n\n\n')
         
         finally:
             return item
     
-    def process_item(self, item, spider):
-        self.save_item(item)
+    async def process_item(self, item, spider):
+        await self.save_item(item, spider)
         return item
