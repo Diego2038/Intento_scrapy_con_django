@@ -5,6 +5,7 @@
 
 import scrapy
 from scrapy.item import Item, Field
+from itemadapter import adapter
 
 
 class ScrapyModuleItem(scrapy.Item):
