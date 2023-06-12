@@ -6,6 +6,7 @@
 import scrapy
 from scrapy.item import Item, Field
 from itemadapter import adapter
+from app_scrapy.models import Articulo #! TODO:
 
 
 class ScrapyModuleItem(scrapy.Item):
@@ -14,7 +15,7 @@ class ScrapyModuleItem(scrapy.Item):
     pass
 
 
-class Computer(Item):
+class Articulo(Item): #! TODO:
     title = Field()
     price = Field()
     # description = Field()

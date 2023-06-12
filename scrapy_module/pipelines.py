@@ -8,26 +8,32 @@
 from itemadapter import ItemAdapter
 
 # from app_scrapy.serializers import ArticuloSerializer
-from asgiref.sync import sync_to_async
-from scrapy.exceptions import DropItem
+from asgiref.sync import sync_to_async 
 
-# import os
+import os
+import django
+# Establecer la configuración de Django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')  # Reemplaza 'project.settings' con el nombre de tu archivo settings.py
+
+# Inicializar la aplicación de Django
+django.setup()
+
+
+from app_scrapy.models import Articulo #! TODO:
+import traceback
+
+ 
 # os.environ['DJANGO_SETTINGS_MODULE']='project_scrapy.settings'
 
 import logging
 
 class ScrapyModulePipeline:
-    
-    
-    
     async def process_item(self, item, spider):
         await self.save_item(item, spider)
         return item
     
-    
     @sync_to_async
     def save_item(self, item, spider):
-        
         try:
             articulo_data = {}
             articulo_data['price'] = item.get('price', [0])[0]
@@ -42,12 +48,14 @@ class ScrapyModulePipeline:
             item.update(updated_item) 
 
             print("MIRAAAAAAAAAA!!!!!!", articulo_data)
+            Articulo.objects.create(titulo=articulo_data['title'],precio=articulo_data['price']) #! TODO:
 
             
             # Realiza el proceso de guardado en la base de datos aquí
             print("SE GUARDÓ CORRECTAMENTE")
         except Exception as e: 
-            print('Error:', e)
+            print('ERROR!!!!! OOOOOOOOOOOO:', e)
+            traceback.print_exc(        )
         
         return item
 

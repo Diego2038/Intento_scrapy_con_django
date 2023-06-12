@@ -10,14 +10,14 @@ from scrapy.loader import ItemLoader
 
 # import views
 
-class Computer(Item):
+class Articulo(Item):
     title = Field()
     price = Field()
     description = Field()
     
 
-class ComputerSpider( CrawlSpider ):
-    name = "ComputerSpider"
+class ArticuloSpider( CrawlSpider ):
+    name = "ArticuloSpider"
     start_urls = ['https://listado.mercadolibre.com.co/computadora-portatil#D[A:computadora%20portatil]'] #!
     allowed_domains = ['listado.mercadolibre.com.co', 'articulo.mercadolibre.com.co/', 'mercadolibre.com.co'] #!
     download_delay = 1 #!
@@ -37,12 +37,12 @@ class ComputerSpider( CrawlSpider ):
         Rule(
             LinkExtractor( 
                 allow=r'/laptop-'
-            ), follow=True, callback='parser_computer' 
+            ), follow=True, callback='parser_Articulo' 
         ),
         Rule(
             LinkExtractor(
                 allow=r'/MCO' 
-            ), follow=True, callback='parser_computer'
+            ), follow=True, callback='parser_Articulo'
         ), 
     )
     
@@ -50,9 +50,9 @@ class ComputerSpider( CrawlSpider ):
        new_price = price.replace('$','').replace('.','')
        return float(new_price.strip())
     
-    def parser_computer(self, response):
+    def parser_Articulo(self, response):
         sel = Selector(response)
-        item = ItemLoader(Computer(), sel)
+        item = ItemLoader(Articulo(), sel)
         item.add_xpath('title','//h1[@class="ui-pdp-title"]//text()')
         item.add_xpath('price', '//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]//text()', MapCompose(self.clean_price))
         item.add_xpath('description', '//p[@class="ui-pdp-description__content"]//text()')

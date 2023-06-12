@@ -4,7 +4,7 @@ from scrapy.loader import ItemLoader
 from itemloaders.processors import MapCompose
 from itemloaders.processors import TakeFirst, Identity
 from scrapy.linkextractors import LinkExtractor
-from scrapy_module.items import Computer
+from scrapy_module.items import Articulo
 from itemadapter import ItemAdapter 
 
 from asgiref.sync import sync_to_async #! OJO
@@ -40,8 +40,8 @@ class MercadolibrespiderSpider(CrawlSpider):
     
     custom_settings = {
         'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
-        'CLOSESPIDER_PAGECOUNT': 3, #!
-        'CLOSESPIDER_ITEMCOUNT': 3, #!
+        'CLOSESPIDER_PAGECOUNT': 8, #!
+        'CLOSESPIDER_ITEMCOUNT': 8, #!
     }
     
     rules = (
@@ -53,12 +53,12 @@ class MercadolibrespiderSpider(CrawlSpider):
         Rule(
             LinkExtractor( 
                 allow=r'/laptop-'
-            ), follow=True, callback='parser_computer' 
+            ), follow=True, callback='parser_articulo' 
         ),
         Rule(
             LinkExtractor(
                 allow=r'/MCO' 
-            ), follow=True, callback='parser_computer'
+            ), follow=True, callback='parser_articulo'
         ), 
     )
     
@@ -67,23 +67,23 @@ class MercadolibrespiderSpider(CrawlSpider):
        return float(new_price.strip())
     
     # Por si acaso
-    def parser_computer(self, response):
+    def parser_articulo(self, response):
         sel = Selector(response)
-        item = ItemLoader(Computer(), sel)
+        item = ItemLoader(Articulo(), sel)
         item.add_xpath('title','//h1[@class="ui-pdp-title"]//text()')
         item.add_xpath('price', '//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]//text()', MapCompose(self.clean_price))
         # item.add_xpath('description', '//p[@class="ui-pdp-description__content"]//text()')
         # item.add_value('description','Descripción genérica')
         yield item.load_item()
         
-        # item = Computer()
+        # item = Articulo()
         # item['title'] = response.xpath('//h1[@class="ui-pdp-title"]/text()').get()
         # item['price'] = response.xpath('//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]/text()').get()
         # item['price'] = self.clean_price(item['price']) 
         # yield item
         
         
-    # def parser_computer(self, response):
+    # def parser_Articulo(self, response):
     #     loader = ArticuloLoader(response=response) 
     #     loader.add_xpath('titulo','//h1[@class="ui-pdp-title"]//text()')
     #     loader.add_xpath('precio', '//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]//text()', MapCompose(self.clean_price))
@@ -93,7 +93,7 @@ class MercadolibrespiderSpider(CrawlSpider):
     #     articulo.save()
     
     
-    # def parser_computer(self, response):
+    # def parser_Articulo(self, response):
     #     loader = ArticuloLoader(response=response)
     #     articulo = loader.load_item()
 
@@ -112,7 +112,7 @@ class MercadolibrespiderSpider(CrawlSpider):
     #         serializer.save() 
     
     
-    # def parser_computer(self, response):
+    # def parser_Articulo(self, response):
         
     #     articulo = Articulo()
         
