@@ -1,26 +1,34 @@
+# *Scrapy integration with Django Rest Framework*
+
+To download the repository
+```
+git clone https://github.com/Diego2038/Attempt_scrapy_with_django
+```
+
+To create the virtual environment and download the libraries (if you don't have Windows, the process is different)
 ```
 pip install venv
 pip -m venv venv
+/venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-
-Si se quiere comprobar que el scrapy por sí solo funciona:
+To apply migrations to the Postgres database
 ```
-cd scrapy_module/spiders
-```
-
-```
-scrapy runspider MercadoLibreSpider.py -o prueba123.json
-```
-*Ahí debería de mosrtarte algunos datos guardados en el json* 
-
-Si se quiere probar Scrapy con Django, vuelva a la carpeta raíz y aplique este comando:
-```
-python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
 ```
 
+To run the server
+
 ```
-scrapy crawler MercadoLibreSpider
+python manage.py runtime server
 ```
 
+To run Scrapy, and have the information stored in the Django ORM DB:
+
+```
+python manage.py crawlxd
+```
+
+**Note**: The spiderejemplo.py file is kept for teaching purposes only, and has no relevance to code execution.
