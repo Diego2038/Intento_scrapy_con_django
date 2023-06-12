@@ -97,8 +97,8 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_scrapy')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_scrapy')
 
-import django
-django.setup()
+# import django
+# django.setup()
 

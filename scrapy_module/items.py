@@ -17,4 +17,4 @@ class ScrapyModuleItem(scrapy.Item):
 class Computer(Item):
     title = Field()
     price = Field()
-    description = Field()
+    # description = Field()

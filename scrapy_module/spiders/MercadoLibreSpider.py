@@ -9,11 +9,11 @@ from itemadapter import ItemAdapter
 
 from asgiref.sync import sync_to_async #! OJO
 
-import os
-os.environ['DJANGO_SETTINGS_MODULE']='project_scrapy.settings'
+# import os
+# os.environ['DJANGO_SETTINGS_MODULE']='project_scrapy.settings'
 
-from app_scrapy.models import Articulo
-from app_scrapy.serializers import ArticuloSerializer
+# from app_scrapy.models import Articulo
+# from app_scrapy.serializers import ArticuloSerializer
 
 # class ArticuloLoader(ItemLoader):
 #     default_item_class = Articulo
@@ -73,8 +73,14 @@ class MercadolibrespiderSpider(CrawlSpider):
         item.add_xpath('title','//h1[@class="ui-pdp-title"]//text()')
         item.add_xpath('price', '//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]//text()', MapCompose(self.clean_price))
         # item.add_xpath('description', '//p[@class="ui-pdp-description__content"]//text()')
-        item.add_value('description','Descripción genérica')
+        # item.add_value('description','Descripción genérica')
         yield item.load_item()
+        
+        # item = Computer()
+        # item['title'] = response.xpath('//h1[@class="ui-pdp-title"]/text()').get()
+        # item['price'] = response.xpath('//div[@class="ui-pdp-price__second-line"]//span[@class="andes-money-amount__fraction"]/text()').get()
+        # item['price'] = self.clean_price(item['price']) 
+        # yield item
         
         
     # def parser_computer(self, response):
