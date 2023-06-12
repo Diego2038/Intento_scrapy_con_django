@@ -1,5 +1,10 @@
 # *Scrapy integration with Django Rest Framework*
 
+This code is responsible for performing web scraping to the MercadoLibre page using the Scrapy library for data collection, and Django Restframework to store the data in a Postgres database.
+<hr>
+
+## Steps
+
 To download the repository
 ```
 git clone https://github.com/Diego2038/Attempt_scrapy_with_django
